@@ -4,17 +4,17 @@ Formator.js är ett lättviktigt bibliotek (mindre än 1 kilobyte) för att vali
 ## Användningsområden
 Formator.js kan användas i två syften; dels för att validera att forumlärsdata är giltig (korrekt inmatad) samt för att formatera datan i ett standardenligt format. Biblioteket har stöd för att validera och formatera följande typer av inmatad data:
 
-* Svenska [mobiltelefonnummer](http://www.google.se)
-* Svenska [postnummer](http://www.google.se)
-* Svenska [personnummer](http://www.google.se)
-* Svenska [organisationsnummer](http://www.google.se)
-* Svenska [momsregistreringsnummer](http://www.google.se)
-* [Bankkortsnummer](http://www.google.se)
-* [E-postadresser](http://www.google.se)
+* Svenska [mobiltelefonnummer](https://github.com/jop-io/formator.js/blob/master/README.md#mobiltelefonnummer)
+* Svenska [postnummer](https://github.com/jop-io/formator.js/blob/master/README.md#postnummer)
+* Svenska [personnummer](https://github.com/jop-io/formator.js/blob/master/README.md#personnummer)
+* Svenska [organisationsnummer](https://github.com/jop-io/formator.js/blob/master/README.md#organisationsnummer)
+* Svenska [momsregistreringsnummer](https://github.com/jop-io/formator.js/blob/master/README.md#momsregistreringsnummer)
+* [Bankkortsnummer](https://github.com/jop-io/formator.js/blob/master/README.md#bankkortsnummer)
+* [E-postadresser](https://github.com/jop-io/formator.js/blob/master/README.md#e-postadresser)
 
 # Installation
 ```javascript
-<script src="valfor.min.js"></script>
+<script src="formator.min.js"></script>
 ```
 
 # Exempel på använding
