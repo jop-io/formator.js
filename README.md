@@ -12,6 +12,9 @@ Formator.js kan användas i två syften; dels för att validera att forumlärsda
 * [Bankkortsnummer](https://github.com/jop-io/formator.js/blob/master/README.md#bankkortsnummer)
 * [E-postadresser](https://github.com/jop-io/formator.js/blob/master/README.md#e-postadresser)
 
+# Demo
+[http://jop.io/projects/formator-js](http://jop.io/projects/formator-js)
+
 # Installation
 ```javascript
 <script src="formator.min.js"></script>
