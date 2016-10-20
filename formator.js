@@ -213,7 +213,7 @@
             if (!(n.length === 12 || n.length === 10) || this.luhn(n.substr(n.length-10,10)) === false) {
                 return false;
             }
-            n = parseInt(n.substr(-7,1), 10) < 2 ? '16' + n.substr(-10,10) : this.personalid(number);
+            n = parseInt(n.substr(-8,1), 10) < 2 ? this.personalid(number) : '16' + n.substr(-10,10);
             return !n ? false : format === 'FULL' ? n : n.substr(2,6)+'-'+n.substr(-4,4);
         },
         
