@@ -144,7 +144,7 @@ formator.bankcard("53540073257"); // returnerar false (felaktig längd)
 ```
 
 ### E-postadresser
-E-postadresser valideras som giltiga enligt mönstret &ast;@&ast;.&ast;.  Maximal tillåten längd på en e-postadress är 254 tecken, i enlighet med [RFC 3696](https://tools.ietf.org/html/rfc3696).
+E-postadresser valideras som giltiga enligt mönstret &ast;@&ast;.&ast; `*@*.*`.  Maximal tillåten längd på en e-postadress är 254 tecken, i enlighet med [RFC 3696](https://tools.ietf.org/html/rfc3696).
 
 E-postadresse vilka valideras som giltiga returneras formaterade. För att välja format på datan som returneras anges en sekundär parameter med något av följande värden:
 
