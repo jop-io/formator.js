@@ -107,12 +107,12 @@ Organisationsnummer valideras i enlighet med [Lagen om identitetsbeteckning för
 
 Organisationsnummer vilka valideras som giltiga returneras formaterade. För att välja format på datan som returneras anges en sekundär parameter med något av följande värden:
 
-1. `DEFAULT` = 10 siffror med skiljetecken (standard), NNNNNN-NNNN
-2. `FULL`    = 12 siffror utan skiljetecken, NNNNNNNNNNNN
+1. `DEFAULT` = 10 siffror utan skiljetecken (standard), NNNNNNNNNN
+2. `DASH`    = 10 siffror med skiljetecken, NNNNNN-NNNN
 
 ```javascript
-formator.organizationid("5562537513"); // returnerar 556253-7513
-formator.organizationid("5562537513", "FULL"); // returnerar 165562537513
+formator.organizationid("5562537513"); // returnerar 5562537513
+formator.organizationid("5562537513", "DASH"); // returnerar 556253-7513
 formator.organizationid("0812345678"); // returnerar false
 ```
 
@@ -161,6 +161,9 @@ formator.email("bill.g@tes@microsoft.com"); // returnerar false
 formator.email("bill.gates@.com"); // returnerar false
 formator.email("@microsoft.com"); // returnerar false
 ```
+
+## Uppdateringar
+- **2017-06-07**: Rättning av bugg i algoritmen för Luhn mod 10 för beräkning av kontrollsiffror för organisationsnummer. Tack till Tina Hammar som uppmärksammade detta.
 
 ## Licens
 Formator.js omfattas av licensformen [MIT](https://opensource.org/licenses/MIT "The MIT License"). Varsågod!
