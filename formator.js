@@ -131,7 +131,7 @@
                 return false;
             }
             var n = number.replace(/\D/g, "");
-            if (n.length < 11 || n.length > 21 || !this.luhn(n)) {
+            if (n.length < 11 || n.length > 21 || !this.luhnMod10(n)) {
                 return false;
             }
             if (['SPACE', 'DASH'].indexOf(format) > -1) {
@@ -164,7 +164,7 @@
                 return false;
             }
             var n = number.replace(/\D/g, "");
-            if (!(n.length === 12 || n.length === 10) || this.luhn(n.substr(n.length-10,10)) === false) {
+            if (!(n.length === 12 || n.length === 10) || this.luhnMod10(n.substr(n.length-10,10)) === false) {
                 return false;
             }
             var months = {1:31,2:29,3:31,4:30,5:31,6:30,7:31,8:31,9:30,10:31,11:30,12:31},
@@ -192,14 +192,8 @@
          * med Lagen om identitetsbeteckning för juridiska personer m.fl. 
          * (SFS 1974:174) och SKV 709.
          * 
-         * För att retunera organisationsnumret i ett visst format, kan en andra 
-         * valfri parameter anges. De format som stöds är:
-         * 
-         *     1. DEFAULT = 10 siffror med skiljetecken (standard), NNNNNN-NNNN
-         *     2. FULL    = 12 siffror utan skiljetecken, NNNNNNNNNNNN
-         *  
-         *  Observera att svenska personnummer är giltiga organisationsnummer 
-         *  för bolagsformen enskild firma.
+         *     1. DEFAULT = 10 siffror utan skiljetecken (standard), NNNNNNNNNN
+         *     2. DASH    = 10 siffror med skiljetecken, NNNNNN-NNNN
          * 
          * @param {String} number Organisationsnummer
          * @param {String} format Önskat format (1-2)
@@ -210,11 +204,10 @@
                 return false;
             }
             var n = number.replace(/\D/g, "");
-            if (!(n.length === 12 || n.length === 10) || this.luhn(n.substr(n.length-10,10)) === false) {
+            if (n.length !== 10 || parseInt(n.substr(-8,1), 10) < 2 || !this.luhnMod10(n.substr(-10,10))) {
                 return false;
             }
-            n = parseInt(n.substr(-8,1), 10) < 2 ? this.personalid(number) : '16' + n.substr(-10,10);
-            return !n ? false : format === 'FULL' ? n : n.substr(2,6)+'-'+n.substr(-4,4);
+            return format === "DASH" ? n.substr(-10,6)+"-"+n.substr(-4,4) : n.substr(-10,10);
         },
         
         /**
@@ -232,11 +225,8 @@
             if (typeof number !== 'string') {
                 return false;
             }
-            var n = this.organizationid(number, 'FULL');
-            if (!n) {
-                return false;
-            }
-            return 'SE ' + n.substr(-10,10) + '01';
+            var n = this.organizationid(number);
+            return !n ? false : 'SE ' + n.substr(-10,10) + '01';
         },
         
         /**
@@ -246,15 +236,15 @@
          * @param {String} number Sifferserie som ska kontrolleras
          * @returns {Boolean} "true" eller "false"
          */
-        luhn : function (number) {
-            var len = number.length, bit = 1, sum = 0, val, arr = [0, 2, 4, 6, 8, 1, 3, 5, 7, 9];
-            while (len) {
-                val = parseInt(number.charAt(--len), 10);
-                sum += (bit ^= 1) ? arr[val] : val;
+        luhnMod10 : function (number) {
+            var factor = 1, sum = 0, i, addend;
+            for (i = number.length-1; i >= 0; i--) {
+                addend = factor * parseInt(number.substr(i, 1),10);
+                factor = factor === 2 ? 1 : 2;
+                sum   += parseInt((addend/10)+(addend%10),10);
             }
-            return sum && sum % 10 === 0;
+            return sum % 10 === 0;
         }
     };
-    
     window.formator = Formator;
 }(window));
